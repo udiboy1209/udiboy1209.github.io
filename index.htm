@@ -1,0 +1,147 @@
+<html>
+<head>
+<title>The Quantum Tunnel</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" type="text/css" href="common.css">
+<script type="text/javascript"> 
+var tabname=["about","projects","stuff","contact"];
+var open = [false, false, false, false]; 
+var scrollHeight=300;      
+function tabScroll(tabID){
+	if(tabID==undefined || tabID=="") tabID="about"
+	window.location.hash=tabID;
+
+    var ctab = document.getElementById(tabID);
+    if(ctab.style.webkitAnimationName == "scrollUp" || ctab.style.webkitAnimationName == "" 
+       || ctab.style.MozAnimationName == "scrollUp" || ctab.style.MozAnimationName == "") { 
+        for(i=0;i<open.length;i++){
+            if(open[i]){
+                document.getElementById(tabname[i]).style.webkitAnimationName = "scrollUp";
+                document.getElementById(tabname[i]).style.webkitAnimationDuration = "0.5s";
+                document.getElementById(tabname[i]).style.MozAnimationName = "scrollUp";
+                document.getElementById(tabname[i]).style.MozAnimationDuration = "0.5s";
+                document.getElementById(tabname[i]).style.height = 4;
+                open[i]=false;
+            }
+        }
+        ctab.style.webkitAnimationName = "dropDown";
+        ctab.style.webkitAnimationDuration = "2s";
+        ctab.style.MozAnimationName = "dropDown";
+        ctab.style.MozAnimationDuration = "2s";
+        ctab.style.height=550;
+        open[getNameIndex(tabID)]=true;
+    }else { 
+        ctab.style.webkitAnimationName= "scrollUp"; 
+        ctab.style.webkitAnimationDuration = "0.5s";
+        ctab.style.MozAnimationName= "scrollUp"; 
+        ctab.style.MozAnimationDuration = "0.5s";
+        ctab.style.height=4;
+        open[getNameIndex(tabID)]=false; 
+    }
+} 
+
+function getNameIndex(tabID){
+    for(i=0; i<tabname.length; i++){
+        if(tabname[i]==(tabID))
+            return i;
+    }
+}
+
+function displayComic(data){
+	document.getElementById("title").innerHTML = data.title;
+	document.getElementById("xkcd-strip").src = data.img;
+	document.getElementById("xkcd-strip").title = data.alt;
+}
+</script>
+</head>
+<body>
+<header>
+    <h1 style="margin: 10px">The Quantum Tunnel</h1>
+</header>
+<div class="cbar" id="cbar"> 
+    <div class="empty">This Shouldn't Be Seen</div>
+    <div class="carea">
+        <div class="cpage" id="about"> <div class="empty"></div>
+            <div class="content-wrapper">
+                <p>
+                <img style="width: 300px; height: auto; float: right; margin-left: 20px" src="http://graph.facebook.com/udiboy1209/picture?height=208&width=208&type=normal">
+                Hello! This is Meet Udeshi, a first year undergraduate student at IIT Bombay.<br>
+                Coding, tinkering with electronics/robotics, and watching movies/TV shows are some of my favourite hobbies. <br>
+                I also like painting, reading suspense novels and solving physics problems if I get the time.
+                <br><br>
+                I've done a lot of interesting coding stuff (cool Android games and the like :P) - Check out the <a href="#projects" onclick="tabScroll('projects')">Projects</a> section.  
+                <br><br>
+                I've just started working on robotics projects (XLR8 car, RC plane, etc.)
+                </p>
+            </div>
+        </div>
+        <div id="about" class="scrollButton" onclick="tabScroll(this.id)" style="left:35px;"><h3>About</h3></div>
+    </div>
+    <div class="carea">
+        <div class="cpage" id="projects"><div class="empty"></div>
+            <div class="content-wrapper">
+                <h2>My Projects</h2>
+                <hr>
+                <h3>Android Games &amp; Apps</h3>
+                <ul>
+                    <li><a href="warzone.htm">Warzone - an android game</a></li>
+                    <li><a href="wavesonstring.htm">Waves on String Simulator</a></li>
+                    <li><a href="https://drive.google.com/file/d/0B_6rvZNWXShpdUQtRHF3NzdHczQ/view?usp=sharing">Ball and Paddle - another android game</a></li>
+                </ul>
+                <hr>
+                <h3>Electronics &amp; Robotics projects</h3>
+                <ul>
+                    <li>XLR8 car - rack and pinion mechanism based</li>
+                    <li>Dragonfly - Remote Controlled plane</li>
+                    <li>Line Follower</li>
+                    <li>Mechatron bot - It can lift blocks</li>
+                </ul>
+                <hr>
+                <h3>Contributions</h3>
+                <p>I am currently a member of the <a href="http://www.aero.iitb.ac.in/pratham/">Student Satellite Project</a> team of IIT Bombay.<br>
+                    I have contributed to a few python and bash projects on github</p>
+            </div>
+        </div>
+        <div id="projects" class="scrollButton" onclick="tabScroll(this.id)" style="left:180px;"><h3>Projects</h3></div> 
+    </div>
+    <div class="carea">
+        <div class="cpage" id="stuff"><div class="empty"></div>
+        	<div class="content-wrapper">
+        		<p>Something "original" yet to come here</p>
+        		
+        		<p>Till then enjoy the latest <b>xkcd</b> comic :P</p>
+        		<hr>
+        		<a href="http://xkcd.com"><h3 id="title">...</h3>
+        		<img id="xkcd-strip"></img></a>
+        	</div>
+        </div>
+        <div id="stuff" class="scrollButton" onclick="tabScroll(this.id)" style="left:325px;"><h3>Interesting Stuff</h3></div> 
+    </div>
+    <div class="carea">
+        <div class="cpage" id="contact"><div class="empty"></div><div class="content-wrapper">
+            <h2>Contact Details</h2>
+            <ul>
+                <li><h4>Email:</h4><a href="mailto:mudeshi1209@gmail.com">mudeshi1209@gmail.com</a></li>
+                <li><h4>Facebook:</h4> <a href="http://facebook.com/udiboy1209">udiboy1209</a></li>
+                <li><h4>Phone:</h4> 9619221240</li>
+                <li><h4>Address:</h4> Room 211, Hostel 16<br>IIT Bombay</li>
+            </ul>
+        </div></div>
+        <div id="contact" class="scrollButton" onclick="tabScroll(this.id)" style="left:470px;"><h3>Contact</h3></div> 
+    </div>
+</div>
+<footer>
+    <a href="http://facebook.com/udiboy1209"><img src="includes/fb_logo.png"></a>
+    <a href="http://github.com/udiboy1209"><img src="includes/github_logo.png"></a>
+    <a href="http://plus.google.com/108170871312475118507"><img src="includes/google_logo.png"></a><br>
+    <h6>Designed by Meet Udeshi</h6>
+    <a href="http://stackexchange.com/users/1595518">
+        <img style="width: 208px; height: 56px;" src="http://stackexchange.com/users/flair/1595518.png">
+    </a>
+</footer>
+<script type="text/javascript">
+	tabScroll(window.location.hash.substring(1));
+</script>
+<script src="http://dynamic.xkcd.com/api-0/jsonp/comic/?callback=displayComic"></script>
+</body>
+</html>
