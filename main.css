@@ -67,7 +67,7 @@ header a, header a:visited {
     -moz-box-shadow:            2px 5px 5px #AAA;
     -webkit-box-shadow:         2px 5px 5px #AAA;
     box-shadow:                 2px 5px 5px #AAA;
-    overflow:                   hidden;
+    overflow-y:                 hidden;
     -webkit-animation-duration: 2s;
     -webkit-animation-iteration-count: 1;
     -webkit-animation-timing-function: ease-in-out;
@@ -107,8 +107,10 @@ header a, header a:visited {
 }
 
 .content-wrapper {
-    width: 60%; 
+    width: 60%;
+    height: 85%;
     margin-left: 10%;
+    overflow-y: auto;
 }
 
 #mframe {
