@@ -4,22 +4,57 @@
     <title>Error 404</title>
 
     <script type="text/javascript">
+
+        function fadeUp(id){
+            return function(){document.getElementById(id).style.display="block";};
+        }
+
+        var i=0;
+
+        setTimeout(fadeUp("joke"), 1000+300*i++);
+        setTimeout(fadeUp("wait"), 1000+300*i++);
+        setTimeout(fadeUp("load"), 1000+300*i++);
+
         setTimeout(function(){
-                document.getElementById("joke").style.display="block";
-                }
-                , 1000);
-        setTimeout(function(){
-                document.location.href="http://udiboy1209.github.io/";
+                //document.location.href="http://udiboy1209.github.io/";
                 }
                 , 3000);
     </script>
+    <style>
+
+@-webkit-keyframes fadeUp {
+    from {
+        opacity : 0;
+        margin-top : 200px;
+    },
+
+    to {
+        opacity : 1.0;
+        margin-top:0px;
+    }
+}
+
+.fade_up {
+    margin-left:auto;
+    margin-right:auto;
+
+    text-align:center;
+    display:none;
+    width:40%;
+
+    -webkit-animation-name:fadeUp;
+    -webkit-animation-duration:0.3s;
+}
+    </style>
 </head>
 
 <body>
     <h1 align="center">Error <font color="#FF0000">404</font></h1>
-    <h2 align="center"><font color="#FF4400">Page not found</font></h2>
+    <h2 align="center"><font color="#FF0000">Page not found</font></h2>
 
     <br><br><br>
-    <h1 id="joke" align="center" style="display:none">Just Kidding! Wait :P :D<br>Loading...</h1> 
+    <h1 id="joke" class="fade_up">Just Kidding!</h1>
+    <h1 id="wait" class="fade_up">Wait :P :D</h1>
+    <h1 id="load" class="fade_up">Loading...</h1> 
 </body>
 </html>
