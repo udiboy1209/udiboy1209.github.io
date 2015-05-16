@@ -3,42 +3,48 @@
 <title>The Quantum Tunnel</title>
 <link rel="stylesheet" type="text/css" href="main.css">
 <link rel="stylesheet" type="text/css" href="common.css">
-<script type="text/javascript"> 
-var tabname=["about","projects","stuff","contact"];
-var open = [false, false, false, false]; 
-var scrollHeight=300;      
-function tabScroll(tabID){
-	if(tabID==undefined || tabID=="") tabID="about"
-	window.location.hash=tabID;
 
-    var ctab = document.getElementById(tabID);
-    if(ctab.style.webkitAnimationName == "scrollUp" || ctab.style.webkitAnimationName == "" 
-       || ctab.style.MozAnimationName == "scrollUp" || ctab.style.MozAnimationName == "") { 
-        for(i=0;i<open.length;i++){
-            if(open[i]){
-                document.getElementById(tabname[i]).style.webkitAnimationName = "scrollUp";
-                document.getElementById(tabname[i]).style.webkitAnimationDuration = "0.5s";
-                document.getElementById(tabname[i]).style.MozAnimationName = "scrollUp";
-                document.getElementById(tabname[i]).style.MozAnimationDuration = "0.5s";
-                document.getElementById(tabname[i]).style.height = 4;
-                open[i]=false;
-            }
-        }
-        ctab.style.webkitAnimationName = "dropDown";
-        ctab.style.webkitAnimationDuration = "2s";
-        ctab.style.MozAnimationName = "dropDown";
-        ctab.style.MozAnimationDuration = "2s";
-        ctab.style.height=550;
-        open[getNameIndex(tabID)]=true;
-    }else { 
-        ctab.style.webkitAnimationName= "scrollUp"; 
-        ctab.style.webkitAnimationDuration = "0.5s";
-        ctab.style.MozAnimationName= "scrollUp"; 
-        ctab.style.MozAnimationDuration = "0.5s";
-        ctab.style.height=4;
-        open[getNameIndex(tabID)]=false; 
-    }
-} 
+<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+<script type="text/javascript"> 
+var open = {"about":false, "projects":false, "stuff":false, "contacts":false}; 
+var open_id;
+var scrollHeight=300;      
+
+$(document).ready(function(){
+    $(".scrollButton").click(function(){
+        var id = $(this).attr('id');
+        if(!open[id]){
+            $(".cpage#"+id).animate({
+                height : '550px'
+            }, 1500);
+
+            $(".cpage#"+open_id).animate({
+                height : '4px'
+            }, 500);
+
+            open[open_id]=false;
+            open[id]=true;
+
+            open_id=id;
+         } else {
+            $(".cpage#"+open_id).animate({
+                height : '4px'
+            }, 500);
+
+            open[open_id]=false;
+
+            open_id = null;
+         }
+    });
+
+    $(".cpage#"+document.location.hash.substring(1)).animate({
+        height : '550px'
+    }, 1500);
+
+    open[document.location.hash.substring(1)]=true;
+
+    open_id=document.location.hash.substring(1)
+});
 
 function getNameIndex(tabID){
     for(i=0; i<tabname.length; i++){
@@ -75,7 +81,7 @@ function displayComic(data){
                 </p>
             </div>
         </div>
-        <div id="about" class="scrollButton" onclick="tabScroll(this.id)" style="left:35px;"><h3>About</h3></div>
+        <div id="about" class="scrollButton" style="left:35px;"><h3>About</h3></div>
     </div>
     <div class="carea">
         <div class="cpage" id="projects"><div class="empty"></div>
@@ -102,7 +108,7 @@ function displayComic(data){
                     I have contributed to a few python and bash projects on github</p>
             </div>
         </div>
-        <div id="projects" class="scrollButton" onclick="tabScroll(this.id)" style="left:180px;"><h3>Projects</h3></div> 
+        <div id="projects" class="scrollButton" style="left:180px;"><h3>Projects</h3></div> 
     </div>
     <div class="carea">
         <div class="cpage" id="stuff"><div class="empty"></div>
@@ -115,7 +121,7 @@ function displayComic(data){
         		<img id="xkcd-strip" src="http://imgs.xkcd.com/comics/turnabout.png"></img></a>
         	</div>
         </div>
-        <div id="stuff" class="scrollButton" onclick="tabScroll(this.id)" style="left:325px;"><h3>Interesting Stuff</h3></div> 
+        <div id="stuff" class="scrollButton" style="left:325px;"><h3>Interesting Stuff</h3></div> 
     </div>
     <div class="carea">
         <div class="cpage" id="contact"><div class="empty"></div><div class="content-wrapper">
@@ -127,7 +133,7 @@ function displayComic(data){
                 <li><h4>Address:</h4> Room 211, Hostel 16<br>IIT Bombay</li>
             </ul>
         </div></div>
-        <div id="contact" class="scrollButton" onclick="tabScroll(this.id)" style="left:470px;"><h3>Contact</h3></div> 
+        <div id="contact" class="scrollButton" style="left:470px;"><h3>Contact</h3></div> 
     </div>
 </div>
 <footer>
@@ -139,9 +145,6 @@ function displayComic(data){
         <img style="width: 208px; height: 56px;" src="https://stackexchange.com/users/flair/1595518.png">
     </a>
 </footer>
-<script type="text/javascript">
-	tabScroll(window.location.hash.substring(1));
-</script>
 <script src="https://dynamic.xkcd.com/api-0/jsonp/comic/?callback=displayComic"></script>
 </body>
 </html>

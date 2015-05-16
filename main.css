@@ -68,12 +68,6 @@ header a, header a:visited {
     -webkit-box-shadow:         2px 5px 5px #AAA;
     box-shadow:                 2px 5px 5px #AAA;
     overflow-y:                 hidden;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: ease-in-out;
-    -moz-animation-duration: 2s;
-    -moz-animation-iteration-count: 1;
-    -moz-animation-timing-function: ease-in-out;
 }
 
 .scrollButton {
