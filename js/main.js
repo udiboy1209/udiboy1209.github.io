@@ -50,7 +50,15 @@ $(document).ready(function(){
         var id = $(this).attr('id');
         openMenu(id);
     });
+
+    $(".scrollButton").mouseenter(function(){
+        $(this).animate({height:"42px"},100);
+    });
     
+    $(".scrollButton").mouseleave(function(){
+        $(this).animate({height:"37px"},100);
+    });
+
     var hash=document.location.hash.substring(1);
     if(hash==null || hash=="")
         hash="about";
