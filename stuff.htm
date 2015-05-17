@@ -1,0 +1,16 @@
+<p>Something "original" yet to come here</p>
+            
+<p>Till then enjoy the latest <b>xkcd</b> comic :P</p>
+<hr>
+<a href="http://xkcd.com"><h3 id="title">Turnabout<h3>
+<img id="xkcd-strip" src="http://imgs.xkcd.com/comics/turnabout.png"></img></a>
+
+<script type="text/javascript">
+
+function displayComic(data){
+	document.getElementById("title").innerHTML = data.title;
+	document.getElementById("xkcd-strip").src = data.img;
+	document.getElementById("xkcd-strip").title = data.alt;
+}
+</script>
+<script src="https://dynamic.xkcd.com/api-0/jsonp/comic/?callback=displayComic"></script>

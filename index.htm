@@ -6,58 +6,63 @@
 
 <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
 <script type="text/javascript"> 
-var open = {"about":false, "projects":false, "stuff":false, "contacts":false}; 
+var open = {"about":false, "projects":false, "stuff":false, "contact":false}; 
 var open_id;
 var scrollHeight=300;      
 
-$(document).ready(function(){
-    $(".scrollButton").click(function(){
-        var id = $(this).attr('id');
-        if(!open[id]){
-            $(".cpage#"+id).animate({
-                height : '550px'
-            }, 1500);
+function closeMenus(){
+    if(open_id!=""){
+        $(".cpage#"+open_id).animate({
+            height : '4px'
+        }, 500);
 
-            $(".cpage#"+open_id).animate({
-                height : '4px'
-            }, 500);
+        open[open_id]=false;
 
-            open[open_id]=false;
-            open[id]=true;
-
-            open_id=id;
-         } else {
-            $(".cpage#"+open_id).animate({
-                height : '4px'
-            }, 500);
-
-            open[open_id]=false;
-
-            open_id = null;
-         }
-    });
-
-    $(".cpage#"+document.location.hash.substring(1)).animate({
-        height : '550px'
-    }, 1500);
-
-    open[document.location.hash.substring(1)]=true;
-
-    open_id=document.location.hash.substring(1)
-});
-
-function getNameIndex(tabID){
-    for(i=0; i<tabname.length; i++){
-        if(tabname[i]==(tabID))
-            return i;
+        open_id = "";
     }
 }
 
-function displayComic(data){
-	document.getElementById("title").innerHTML = data.title;
-	document.getElementById("xkcd-strip").src = data.img;
-	document.getElementById("xkcd-strip").title = data.alt;
+function openMenu(id){
+    if(!open[id]){
+        closeMenus();
+        $(".cpage#"+id).animate({
+            height : '550px'
+        }, 1500);
+
+        open[id]=true;
+
+        open_id=id;
+    } else {
+        closeMenus();
+    }
+
+    window.location.hash = open_id;
 }
+
+function openContent(filename){
+    closeMenus();
+
+    $("#cdrawer").animate({width:"95%"}, 2000);
+    $("#cdrawer").load(filename);
+}
+
+$(document).ready(function(){
+    $("#about .content-wrapper").load("about.htm");
+    $("#projects .content-wrapper").load("projects.htm");
+    $("#stuff .content-wrapper").load("stuff.htm");
+    $("#contact .content-wrapper").load("contact.htm");
+
+    $(".scrollButton").click(function(){
+        var id = $(this).attr('id');
+        openMenu(id);
+    });
+    
+    var hash=document.location.hash.substring(1);
+    if(hash==null || hash=="")
+        hash="about";
+
+    openMenu(hash);
+});
 </script>
 </head>
 <body>
@@ -69,16 +74,6 @@ function displayComic(data){
     <div class="carea">
         <div class="cpage" id="about"> <div class="empty"></div>
             <div class="content-wrapper">
-                <p>
-                <img style="width: 300px; height: auto; float: right; margin-left: 20px" src="https://graph.facebook.com/udiboy1209/picture?height=208&width=208&type=normal">
-                Hello! This is Meet Udeshi, a first year undergraduate student at IIT Bombay.<br>
-                Coding, tinkering with electronics/robotics, and watching movies/TV shows are some of my favourite hobbies. <br>
-                I also like painting, reading suspense novels and solving physics problems if I get the time.
-                <br><br>
-                I've done a lot of interesting coding stuff (cool Android games and the like :P) - Check out the <a href="#projects" onclick="tabScroll('projects')">Projects</a> section.  
-                <br><br>
-                I've just started working on robotics projects (XLR8 car, RC plane, etc.)
-                </p>
             </div>
         </div>
         <div id="about" class="scrollButton" style="left:35px;"><h3>About</h3></div>
@@ -86,26 +81,6 @@ function displayComic(data){
     <div class="carea">
         <div class="cpage" id="projects"><div class="empty"></div>
             <div class="content-wrapper">
-                <h2>My Projects</h2>
-                <hr>
-                <h3>Android Games &amp; Apps</h3>
-                <ul>
-                    <li><a href="warzone.htm">Warzone - an android game</a></li>
-                    <li><a href="wavesonstring.htm">Waves on String Simulator</a></li>
-                    <li><a href="https://drive.google.com/file/d/0B_6rvZNWXShpdUQtRHF3NzdHczQ/view?usp=sharing">Ball and Paddle - another android game</a></li>
-                </ul>
-                <hr>
-                <h3>Electronics &amp; Robotics projects</h3>
-                <ul>
-                    <li>XLR8 car - rack and pinion mechanism based</li>
-                    <li>Dragonfly - Remote Controlled plane</li>
-                    <li>Line Follower</li>
-                    <li>Mechatron bot - It can lift blocks</li>
-                </ul>
-                <hr>
-                <h3>Contributions</h3>
-                <p>I am currently a member of the <a href="http://www.aero.iitb.ac.in/pratham/">Student Satellite Project</a> team of IIT Bombay.<br>
-                    I have contributed to a few python and bash projects on github</p>
             </div>
         </div>
         <div id="projects" class="scrollButton" style="left:180px;"><h3>Projects</h3></div> 
@@ -113,27 +88,17 @@ function displayComic(data){
     <div class="carea">
         <div class="cpage" id="stuff"><div class="empty"></div>
         	<div class="content-wrapper">
-        		<p>Something "original" yet to come here</p>
-        		
-        		<p>Till then enjoy the latest <b>xkcd</b> comic :P</p>
-        		<hr>
-        		<a href="http://xkcd.com"><h3 id="title">Turnabout<h3>
-        		<img id="xkcd-strip" src="http://imgs.xkcd.com/comics/turnabout.png"></img></a>
         	</div>
         </div>
         <div id="stuff" class="scrollButton" style="left:325px;"><h3>Interesting Stuff</h3></div> 
     </div>
     <div class="carea">
         <div class="cpage" id="contact"><div class="empty"></div><div class="content-wrapper">
-            <h2>Contact Details</h2>
-            <ul>
-                <li><h4>Email:</h4><a href="mailto:mudeshi1209@gmail.com">mudeshi1209@gmail.com</a></li>
-                <li><h4>Facebook:</h4> <a href="http://facebook.com/udiboy1209">udiboy1209</a></li>
-                <li><h4>Phone:</h4> 9619221240</li>
-                <li><h4>Address:</h4> Room 211, Hostel 16<br>IIT Bombay</li>
-            </ul>
         </div></div>
         <div id="contact" class="scrollButton" style="left:470px;"><h3>Contact</h3></div> 
+    </div>
+    <div id="cdrawer">
+
     </div>
 </div>
 <footer>
@@ -145,6 +110,5 @@ function displayComic(data){
         <img style="width: 208px; height: 56px;" src="https://stackexchange.com/users/flair/1595518.png">
     </a>
 </footer>
-<script src="https://dynamic.xkcd.com/api-0/jsonp/comic/?callback=displayComic"></script>
 </body>
 </html>

@@ -53,7 +53,7 @@ header a, header a:visited {
 
 .cbar {
     width:                      100%;
-    height:                     0px;
+    height:                     100%;
     overflow:                   visible;
     position:                   fixed;
     float:                      left;
@@ -107,7 +107,14 @@ header a, header a:visited {
     overflow-y: auto;
 }
 
-#mframe {
-    height: 500px;
+#cdrawer {
+    height: 80%;
+    width: 0px;
+    background-color:           #DDD;
+    border-bottom-right-radius: 40px 40px;
+    -moz-box-shadow:            2px 5px 5px #AAA;
+    -webkit-box-shadow:         2px 5px 5px #AAA;
+    box-shadow:                 2px 5px 5px #AAA;
+    overflow-x:                 hidden;
 }
 
