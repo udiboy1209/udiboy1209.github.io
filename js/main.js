@@ -12,6 +12,8 @@ function closeMenus(){
 
         open_id = "";
     }
+
+    $("#cdrawer").animate({width:"0px"},500);
 }
 
 function openMenu(id){
@@ -34,8 +36,8 @@ function openMenu(id){
 function openContent(filename){
     closeMenus();
 
-    $("#cdrawer").animate({width:"95%"}, 2000);
-    $("#cdrawer").load(filename);
+    $("#cdrawer").animate({width:"90%"}, 2000);
+    $("#cdrawer .content-wrapper").load(filename);
 }
 
 $(document).ready(function(){
