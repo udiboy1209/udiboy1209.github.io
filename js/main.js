@@ -51,12 +51,12 @@ function openMenu(id){
 }
 
 function onContentLoad(){
-    $("a").click(function(e){
+    $("a.blog").click(function(e){
 	e.preventDefault()
 	var path = $(this).attr('href');
-	if(/^(http|mailto)/.test(path))
-		closeMenus(path,true)
-	else 
+	//if(/^(http|mailto)/.test(path))
+	//	closeMenus(path,true)
+	//else 
 		closeMenus("?page="+path)
     });
 }
