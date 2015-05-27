@@ -104,6 +104,7 @@ header a, header a:visited {
     width: 60%;
     height: 85%;
     margin-left: 10%;
+    margin-top: 40px;
     overflow-y: auto;
 }
 
