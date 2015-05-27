@@ -101,15 +101,13 @@ header a, header a:visited {
 }
 
 .content-wrapper {
-    width: 60%;
-    height: 85%;
-    margin-left: 10%;
     margin-top: 40px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #cdrawer {
-    height: 70%;
+    height: 550px;
     width: 0px;
     background-color:           #DDD;
     border-bottom-right-radius: 40px 40px;

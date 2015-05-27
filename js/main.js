@@ -69,6 +69,10 @@ function openContent(filename){
 }
 
 $(document).ready(function(){
+    $(".content-wrapper").css("width",screen.availWidth*0.5);
+    $(".content-wrapper").css("height",screen.availHeight*0.6);
+    $(".content-wrapper").css("margin-left",screen.availWidth*0.1);
+
     $(".scrollButton").click(function(){
         var id = $(this).attr('id');
 	closeMenus("?menu="+id);
