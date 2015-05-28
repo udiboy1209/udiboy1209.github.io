@@ -1,71 +1,46 @@
-var open = {"about":false, "projects":false, "stuff":false, "contact":false}; 
-var open_id;
-var content_open=false;
+open_id = ""
+content_open = false
 
-function closeMenus(url,external){
-    if(typeof external == undefined)
-	external = false
+function closeMenus(url){
 
     close_func=function(){
-		if(url != undefined && url != null && url != "") {
-		    if(external)
-			window.location=url
-		    else
-		        window.location.href=url
-		}
+            window.location.href=url
 	    };
 
     if(open_id!=""){
         $(".cpage#"+open_id).animate({
             height : '4px'
         },500,"swing",close_func);
-
-        open[open_id]=false;
-
-        open_id = "";
-        //location.hash="";
     }
 
     if(content_open){
         $("#cdrawer").animate({width:"0px"},500,"swing",close_func);
-        //location.search="";
-        content_open=false;
     }
 }
 
 function openMenu(id){
-    if(!open[id]){
-        closeMenus();
-        $(".cpage#"+id).animate({
-            height : '550px'
-        }, 1500);
+    $(".cpage#"+id).animate({
+        height : '550px'
+    }, 1500);
 
-        open[id]=true;
-
-        open_id=id;
-    } else {
-        closeMenus();
-    }
-
-    //window.location.hash = open_id;
+    open_id=id
 }
 
 function onContentLoad(){
-    $("a.blog").click(function(e){
-	e.preventDefault()
-	var path = $(this).attr('href');
-	//if(/^(http|mailto)/.test(path))
-	//	closeMenus(path,true)
-	//else 
-		closeMenus("?page="+path)
+    $('a:external').attr('target', '_blank');
+
+    $('a:not(:external)').click(function(e){
+        e.preventDefault()
+        var path = $(this).attr('href');
+        closeMenus(path)
     });
 }
 
 function openContent(filename){
     $("#cdrawer").animate({width:"90%"}, 2000);
-    $("#cdrawer .content-wrapper").load(filename,onContentLoad);
+    $("#cdrawer .content-wrapper").load("/pages/"+filename+".htm",onContentLoad);
 
-    content_open=true;
+    content_open=true
 }
 
 $(document).ready(function(){
@@ -75,8 +50,8 @@ $(document).ready(function(){
 
     $(".scrollButton").click(function(){
         var id = $(this).attr('id');
-	closeMenus("?menu="+id);
-	console.log("id: "+id)
+        closeMenus("/?menu="+id);
+        console.log("id: "+id)
     });
 
 
@@ -88,8 +63,8 @@ $(document).ready(function(){
         $(this).animate({height:"37px"},100);
     });
 
-    var menu=$.query.menu;
-    var page=$.query.page;
+    var page = $.query.page
+    var menu = $.query.menu
 
     if(page!="" && page != null){
         openContent(page);
