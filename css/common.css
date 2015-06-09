@@ -42,6 +42,11 @@ a {
     color: #3D3D9B;
 }
 
+img.emo{
+    height:15px;
+    vertical-align: middle;
+}
+
 @-webkit-keyframes dropDown {
     from {
         height: 4px;

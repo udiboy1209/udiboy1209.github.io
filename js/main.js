@@ -1,5 +1,17 @@
 open_id = ""
 content_open = false
+smileys={
+    ":)":"smile.png",
+    ":P":"tongue.png",
+    ":D":"teeth.png",
+    "^_^":"happy.png",
+    ":|":"neutral.png",
+    ":(":"sad.png",
+    ">:(":"mad.png",
+    "B|":"dude.png",
+    ":O":"surprised.png",
+    ":S":"weird.png",
+    ";)":"wink.png"};
 
 function closeMenus(url){
 
@@ -34,6 +46,15 @@ function onContentLoad(){
         var path = $(this).attr('href');
         closeMenus(path)
     });
+
+    $("p").html(function (i,content) {
+        return content.replace(/[:\/)PDS(|^_>]+/g, function (match) {
+                console.log("replacing in "+i+" "+match);
+                return typeof smileys[match] != 'undefined' ?
+                               '<img class="emo" src="/includes/smileys/'+smileys[match]+'"/>' :
+                                          match;
+                  });
+    });
 }
 
 function openContent(filename){
@@ -44,7 +65,8 @@ function openContent(filename){
 }
 
 $(document).ready(function(){
-    $(".content-wrapper").css("width",screen.availWidth*0.5);
+
+    $(".content-wrapper").css("width",screen.availWidth*0.6);
     $(".content-wrapper").css("height",screen.availHeight*0.6);
     $(".content-wrapper").css("margin-left",screen.availWidth*0.1);
 
