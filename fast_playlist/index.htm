@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='main.css' rel='stylesheet' type='text/css'>
   <script type="text/javascript" src="youtube.js"></script>
   <script type="text/javascript">
     var list;
@@ -25,12 +28,14 @@
         button.id='button';
 
         if(func=='add'){
-            button.innerHTML='Add'
+            button.className='fab'
+            button.innerHTML='<i class="material-icons">add</i>'
             button.id=id;
             button.tag=snippet
             button.onclick=function(){addToPlaylist(this.id, this.tag)}
         } else if(func=='remove'){
-            button.innerHTML='Remove'
+            button.className='fab'
+            button.innerHTML='<i class="material-icons">clear</i>'
             button.id=id;
             button.onclick=function(){list.removeChild(document.getElementById(this.id))}
         }
@@ -79,10 +84,9 @@
   <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="left" style="margin-left:13%;margin-right:4%;width:33%;display:inline-block;vertical-align:top">
-        <div id="player"></div>
+        <center><div id="player"></div></center>
         <br>
-        <button onclick="playNext()">Next</button>
-        <hr>
+        <button onclick="playNext()" style="width:100%">Next</button>
         <h3>Next in line :</h3>
         <table id="list" style="width:100%"></table>
     </div>
