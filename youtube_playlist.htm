@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <script type="text/javascript">
+    var player;
+    var list;
+    var input;
+
+    var API_KEY = 'AIzaSyD67rIKHYPR-GMEs6K9dL6SnwIMlLxoIjM'
+    var YouTube;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '195',
+        width: '320',
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    // 4. The API will call this function when the video player is ready.
+    function onPlayerReady(event) {
+      event.target.playVideo();
+    }
+
+    // 5. The API calls this function when the player's state changes.
+    //    The function indicates that when playing a video (state=1),
+    //    the player should play for six seconds and then stop.
+    var playing = false;
+    function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.ENDED) {
+        playNext();
+        playing =false
+      } else if(event.data == YT.PlayerState.PLAYING)
+        playing=true
+    }
+
+    function onGoogleApiClientLoad () {
+        gapi.client.setApiKey(API_KEY);
+        gapi.client.load('youtube', 'v3').then(function() {
+            console.log("loaded")
+            YouTube = gapi.client.youtube;
+        });
+    }
+
+    function playNext() {
+        if(list.hasChildNodes())
+            player.loadVideoById(list.removeChild(list.childNodes[0]).innerHTML);
+        else
+            playing=false
+      
+    }
+
+    function addToPlaylist(url){
+        if(url.substring(0,4)=='http'){
+            var i=url.indexOf('watch?v=')+8;
+            var j=url.indexOf('&',i)
+
+            var li=document.createElement('li')
+            console.log(i)
+            console.log(j)
+            if(j<0)
+                li.innerHTML=url.substring(i)
+            else
+                li.innerHTML=url.substring(i,j)
+            list.appendChild(li)
+        } else {
+            var li=document.createElement('li')
+            li.innerHTML=url
+            list.appendChild(li)
+        }
+
+        input.value=""
+        if(!playing)
+            playNext()
+    }
+
+    function search(params){
+        YouTube.search.list({
+            q:params,
+            part:'snippet'
+        }).execute(function(response){
+            var str = JSON.stringify(response);
+            console.log(str)
+        });
+    }
+  </script>
+  </head>
+  <body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="left" style="width:49%;display:inline-block">
+        <div id="player"></div>
+        <br>
+        <input type="text" id="vid"/>
+        <button onclick="addToPlaylist(input.value)">Submit</button>
+        <br>
+        <ol id="list"></ol>
+    </div>
+    <div id="right" style="width:49%;display:inline-block">
+        <input type="text" id="sbar"/>
+        <button onclick="search(document.getElementById('sbar').value)">Search</button><br>
+        <div id="search_res"></div>
+    </div>
+
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      list=document.getElementById('list');
+      input=document.getElementById('vid')
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=onGoogleApiClientLoad"></script>
+  </body>
+</html>
