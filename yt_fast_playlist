@@ -5,6 +5,7 @@
     var player;
     var list;
     var input;
+    var search_res;
 
     var API_KEY = 'AIzaSyD67rIKHYPR-GMEs6K9dL6SnwIMlLxoIjM'
     var YouTube;
@@ -47,14 +48,14 @@
 
     function playNext() {
         if(list.hasChildNodes())
-            player.loadVideoById(list.removeChild(list.childNodes[0]).innerHTML);
+            player.loadVideoById(list.removeChild(list.childNodes[0]).id);
         else
             playing=false
       
     }
 
-    function addToPlaylist(url){
-        if(url.substring(0,4)=='http'){
+    function addToPlaylist(url, title){
+        /*if(url.substring(0,4)=='http'){
             var i=url.indexOf('watch?v=')+8;
             var j=url.indexOf('&',i)
 
@@ -66,39 +67,56 @@
             else
                 li.innerHTML=url.substring(i,j)
             list.appendChild(li)
-        } else {
+        } else {*/
             var li=document.createElement('li')
-            li.innerHTML=url
+            li.id=url
+            li.innerHTML=title
             list.appendChild(li)
-        }
-
-        input.value=""
+        //}
         if(!playing)
             playNext()
     }
 
     function search(params){
-        YouTube.search.list({
-            q:params,
-            part:'snippet'
-        }).execute(function(response){
-            var str = JSON.stringify(response);
-            console.log(str)
-        });
+        search_res.innerHTML='';
+
+        if(params.length>0){
+            YouTube.search.list({
+                q:params,
+                part:'snippet'
+            }).execute(function(response){
+                for(var i=0; i<response.items.length; i++){
+                    var item = response.items[i]
+                    var li = document.createElement('div');
+                    var title = document.createElement('span');
+                    var thumb= document.createElement('img');
+                    var button = document.createElement('button');
+
+                    title.innerHTML=item.snippet.title;
+                    thumb.src = item.snippet.thumbnails.default.url;
+
+                    button.innerHTML='Add'
+                    button.id=item.id.videoId;
+                    button.tag=item.snippet.title
+                    button.onclick=function(){addToPlaylist(this.id, this.tag)}
+                    li.appendChild(thumb);
+                    li.appendChild(title);
+                    li.appendChild(button);
+                    search_res.appendChild(li);
+                }
+            });
+        }
     }
   </script>
   </head>
   <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-    <div id="left" style="width:49%;display:inline-block">
+    <div id="left" style="width:49%;display:inline-block;vertical-align:top">
         <div id="player"></div>
         <br>
-        <input type="text" id="vid"/>
-        <button onclick="addToPlaylist(input.value)">Submit</button>
-        <br>
-        <ol id="list"></ol>
+        <ul id="list"></ul>
     </div>
-    <div id="right" style="width:49%;display:inline-block">
+    <div id="right" style="width:49%;display:inline-block;vertical-align:top">
         <input type="text" id="sbar"/>
         <button onclick="search(document.getElementById('sbar').value)">Search</button><br>
         <div id="search_res"></div>
@@ -112,7 +130,7 @@
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
       list=document.getElementById('list');
-      input=document.getElementById('vid')
+      search_res=document.getElementById('search_res');
     </script>
     <script src="https://apis.google.com/js/client.js?onload=onGoogleApiClientLoad"></script>
   </body>
