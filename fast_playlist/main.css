@@ -12,12 +12,17 @@ hr {
 	border: 1px #cc181e solid;
 }
 
-button {
+*:focus{
+	outline:0px;
+}
+
+button{
 	background-color: #cc181e;
 	color: #fff;
 	border: 1px #cc181e solid;
 	padding: 10px;
 	border-radius: 4px;
+	outline: 0px;
 }
 
 button:hover{
