@@ -7,6 +7,7 @@
   <script type="text/javascript" src="youtube.js"></script>
   <script type="text/javascript">
     var list;
+    var loop = false;
     var sbar;
     var search_res;
 
@@ -49,8 +50,14 @@
     function playNext() {
         player.stopVideo()
 
-        if(list.hasChildNodes())
-            player.loadVideoById(list.removeChild(list.childNodes[0]).id);
+        loop = document.getElementById("looper").checked;
+        if(list.hasChildNodes()) {
+            var next_song = list.removeChild(list.childNodes[0]);
+            player.loadVideoById(next_song.id);
+            if(loop)
+                list.appendChild(next_song);
+        }
+
         else
             playing=false
     }
@@ -58,7 +65,7 @@
     function addToPlaylist(id,snippet){
         var li=getVidRow(id,snippet,'remove');
         list.appendChild(li)
-        
+
         if(!playing)
             playNext()
     }
@@ -87,6 +94,8 @@
         <center><div id="player"></div></center>
         <br>
         <button onclick="playNext()" style="width:100%">Next</button>
+        <label><input type="checkbox" id="looper" value="looper">Loop
+            indefinitely?</label></br>
         <h3>Next in line :</h3>
         <table id="list" style="width:100%"></table>
     </div>
