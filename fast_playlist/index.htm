@@ -7,8 +7,8 @@
   <script type="text/javascript" src="youtube.js"></script>
   <script type="text/javascript">
     var list;
-    var loop = false;
-    var repeat_current = true;
+    var repeat_all = false;
+    var repeat_one = true;
     var currently_playing = false;
     var sbar;
     var search_res;
@@ -52,14 +52,14 @@
     function playNext() {
         player.stopVideo()
 
-        loop = document.getElementById("looper").checked;
-        repeat_current = document.getElementById("repeat_indefinitely").checked;
+        //loop = document.getElementById("looper").checked;
+        //repeat_current = document.getElementById("repeat_indefinitely").checked;
 
-        if(repeat_current && currently_playing)
+        if(repeat_one && currently_playing)
             player.loadVideoById(currently_playing.id);
 
         else if(list.hasChildNodes()) {
-            if(loop && !repeat_current)
+            if(repeat_all && !repeat_one)
                 list.appendChild(currently_playing);
 
             var next_song = list.childNodes[0];
@@ -96,16 +96,43 @@
             });
         }
     }
+
+    function toggle(btn){
+        if(btn.id=='repeat_all'){
+            if(btn.className=='active'){
+                repeat_all=false;
+                btn.className='';
+            } else {
+                repeat_all=true;
+                btn.className='active';
+            }
+
+            document.getElementById("repeat_one").className="";
+            repeat_one=false;
+        } else if(btn.id=='repeat_one'){
+            if(btn.className=='active'){
+                repeat_one=false;
+                btn.className='';
+            } else {
+                repeat_one=true;
+                btn.className='active';
+            }
+
+            document.getElementById("repeat_all").className="";
+            repeat_all=false;
+        }
+    }
   </script>
   </head>
   <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="left" style="margin-left:13%;margin-right:4%;width:33%;display:inline-block;vertical-align:top">
-        <center><div id="player"></div></center>
+        <center><div id="player"></div>
         <br>
-        <button onclick="playNext()" style="width:100%">Next</button>
-        <label><input type="checkbox" id="looper" value="looper">Loop indefinitely</label></br>
-        <label><input type="checkbox" id="repeat_indefinitely" value="repeat_indefinitely">Repeat current</label></br>
+        <button onclick="playNext()" style="width:100%">Next</button><br>
+        <button title="Courtesy of Sayantan Khan (Bolt64)" id="repeat_all" onclick="toggle(this)" style="width:48%">Repeat All</button>
+        <button title="Courtesy of Sayantan Khan (Bolt64)" id="repeat_one" onclick="toggle(this)" style="width:48%">Repeat One</button>
+        </center>
         <h3>Next in line :</h3>
         <table id="list" style="width:100%"></table>
     </div>
