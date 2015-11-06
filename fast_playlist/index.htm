@@ -8,6 +8,8 @@
   <script type="text/javascript">
     var list;
     var loop = false;
+    var repeat_current = true;
+    var currently_playing = false;
     var sbar;
     var search_res;
 
@@ -51,10 +53,17 @@
         player.stopVideo()
 
         loop = document.getElementById("looper").checked;
-        if(list.hasChildNodes()) {
-            var next_song = list.removeChild(list.childNodes[0]);
+        repeat_current = document.getElementById("repeat_indefinitely").checked;
+
+        if(repeat_current && currently_playing)
+            player.loadVideoById(currently_playing.id);
+
+        else if(list.hasChildNodes()) {
+            var next_song = list.childNodes[0];
+            currently_playing = next_song;
+            list.removeChild(next_song);
             player.loadVideoById(next_song.id);
-            if(loop)
+            if(loop && !repeat_current)
                 list.appendChild(next_song);
         }
 
@@ -94,8 +103,8 @@
         <center><div id="player"></div></center>
         <br>
         <button onclick="playNext()" style="width:100%">Next</button>
-        <label><input type="checkbox" id="looper" value="looper">Loop
-            indefinitely?</label></br>
+        <label><input type="checkbox" id="looper" value="looper">Loop indefinitely</label></br>
+        <label><input type="checkbox" id="repeat_indefinitely" value="repeat_indefinitely">Repeat current</label></br>
         <h3>Next in line :</h3>
         <table id="list" style="width:100%"></table>
     </div>
