@@ -59,12 +59,13 @@
             player.loadVideoById(currently_playing.id);
 
         else if(list.hasChildNodes()) {
+            if(loop && !repeat_current)
+                list.appendChild(currently_playing);
+
             var next_song = list.childNodes[0];
             currently_playing = next_song;
             list.removeChild(next_song);
             player.loadVideoById(next_song.id);
-            if(loop && !repeat_current)
-                list.appendChild(next_song);
         }
 
         else
