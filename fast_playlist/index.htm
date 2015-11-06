@@ -7,6 +7,9 @@
   <script type="text/javascript" src="youtube.js"></script>
   <script type="text/javascript">
     var list;
+    var repeat_all = false;
+    var repeat_one = false;
+    var currently_playing = false;
     var sbar;
     var search_res;
 
@@ -49,8 +52,22 @@
     function playNext() {
         player.stopVideo()
 
-        if(list.hasChildNodes())
-            player.loadVideoById(list.removeChild(list.childNodes[0]).id);
+        //loop = document.getElementById("looper").checked;
+        //repeat_current = document.getElementById("repeat_indefinitely").checked;
+
+        if(repeat_one && currently_playing)
+            player.loadVideoById(currently_playing.id);
+
+        else if(list.hasChildNodes()) {
+            if(repeat_all && !repeat_one)
+                list.appendChild(currently_playing);
+
+            var next_song = list.childNodes[0];
+            currently_playing = next_song;
+            list.removeChild(next_song);
+            player.loadVideoById(next_song.id);
+        }
+
         else
             playing=false
     }
@@ -58,7 +75,7 @@
     function addToPlaylist(id,snippet){
         var li=getVidRow(id,snippet,'remove');
         list.appendChild(li)
-        
+
         if(!playing)
             playNext()
     }
@@ -79,14 +96,43 @@
             });
         }
     }
+
+    function toggle(btn){
+        if(btn.id=='repeat_all'){
+            if(btn.className=='active'){
+                repeat_all=false;
+                btn.className='';
+            } else {
+                repeat_all=true;
+                btn.className='active';
+            }
+
+            document.getElementById("repeat_one").className="";
+            repeat_one=false;
+        } else if(btn.id=='repeat_one'){
+            if(btn.className=='active'){
+                repeat_one=false;
+                btn.className='';
+            } else {
+                repeat_one=true;
+                btn.className='active';
+            }
+
+            document.getElementById("repeat_all").className="";
+            repeat_all=false;
+        }
+    }
   </script>
   </head>
   <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="left" style="margin-left:13%;margin-right:4%;width:33%;display:inline-block;vertical-align:top">
-        <center><div id="player"></div></center>
+        <center><div id="player"></div>
         <br>
-        <button onclick="playNext()" style="width:100%">Next</button>
+        <button onclick="playNext()" style="width:100%">Next</button><br>
+        <button title="Courtesy of Sayantan Khan (Bolt64)" id="repeat_all" onclick="toggle(this)" style="width:48%">Repeat All</button>
+        <button title="Courtesy of Sayantan Khan (Bolt64)" id="repeat_one" onclick="toggle(this)" style="width:48%">Repeat One</button>
+        </center>
         <h3>Next in line :</h3>
         <table id="list" style="width:100%"></table>
     </div>

@@ -3,6 +3,7 @@ body{
 }
 
 h3,button{
+	text-align: middle;
 	font-family: 'Roboto',sans-serif;
 	font-size: 16px;
 	color: #241712;
@@ -12,20 +13,27 @@ hr {
 	border: 1px #cc181e solid;
 }
 
-button {
+*:focus{
+	outline:0px;
+}
+
+button{
 	background-color: #cc181e;
-	color: #fff;
+	color: #ddd;
 	border: 1px #cc181e solid;
 	padding: 10px;
+	margin: 2px;
 	border-radius: 4px;
+	outline: 0px;
 }
 
 button:hover{
 	background-color: #F07D5E;
 }
 
-button:active{
-	background-color: #8F1115;
+button:active,button.active{
+	background-color: #8F1125;
+	color: #fff;
 }
 
 button.fab {
