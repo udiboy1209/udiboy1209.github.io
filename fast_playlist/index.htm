@@ -55,11 +55,13 @@
         //loop = document.getElementById("looper").checked;
         //repeat_current = document.getElementById("repeat_indefinitely").checked;
 
-        if(repeat_one && currently_playing)
-            player.loadVideoById(currently_playing.id);
+        if(repeat_one && currently_playing){
+            player.seekTo(0);
+            player.playVideo();
+        }
 
         else if(list.hasChildNodes()) {
-            if(repeat_all && !repeat_one)
+            if(repeat_all && !repeat_one && currently_playing)
                 list.appendChild(currently_playing);
 
             var next_song = list.childNodes[0];
@@ -86,7 +88,9 @@
         if(params.length>0){
             YouTube.search.list({
                 q:params,
-                part:'snippet'
+                part:'snippet',
+                type:'video',
+                videoEmbeddable:'true'
             }).execute(function(response){
                 for(var i=0; i<response.items.length; i++){
                     var item = response.items[i]
