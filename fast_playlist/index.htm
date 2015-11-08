@@ -16,6 +16,7 @@
     function getVidRow(id,snippet, func){
         var li = document.createElement('tr');
         li.id=id;
+        li.core_snippet = snippet;
         var titleTd=document.createElement('td');
         var thumbTd=document.createElement('td');
         var buttonTd=document.createElement('td');
@@ -40,7 +41,10 @@
             button.className='fab'
             button.innerHTML='<i class="material-icons">clear</i>'
             button.id=id;
-            button.onclick=function(){list.removeChild(document.getElementById(this.id))}
+            button.onclick=function() {
+                list.removeChild(document.getElementById(this.id));
+                savePlaylist();
+            }
         }
 
         title.innerHTML = snippet.title;
@@ -71,16 +75,47 @@
         }
 
         else
-            playing=false
+            playing=false;
+
+        savePlaylist();
     }
 
     function addToPlaylist(id,snippet){
         var li=getVidRow(id,snippet,'remove');
-        list.appendChild(li)
+        list.appendChild(li);
 
         if(!playing)
-            playNext()
+            playNext();
+
+        savePlaylist();
     }
+
+    function savePlaylist() {
+        var list_of_nodes = [];
+        var length = list.childNodes.length;
+        var i;
+        if(currently_playing)
+            list_of_nodes.push([currently_playing.id, currently_playing.core_snippet]);
+        for(i=0;i<length;i++)
+            list_of_nodes.push([list.childNodes[i].id, list.childNodes[i].core_snippet]);
+        localStorage.setItem('playlist', JSON.stringify(list_of_nodes));
+        localStorage.setItem('playlist_saved', JSON.stringify(true));
+    }
+
+    function loadPlaylist() {
+        if(JSON.parse(localStorage.getItem('playlist_saved'))) {
+            var list_of_nodes = JSON.parse(localStorage.getItem('playlist'));
+            var length = list_of_nodes.length;
+            var i;
+            for(i=0; i < length; i++) {
+                id = list_of_nodes[i][0];
+                snippet = list_of_nodes[i][1];
+                var li = getVidRow(id, snippet, 'remove');
+                list.appendChild(li);
+            }
+        }
+    }
+
 
     function search(params){
         search_res.innerHTML='';
@@ -128,7 +163,7 @@
     }
   </script>
   </head>
-  <body>
+  <body onload="loadPlaylist()">
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="left" style="margin-left:13%;margin-right:4%;width:33%;display:inline-block;vertical-align:top">
         <center><div id="player"></div>
