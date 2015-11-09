@@ -72,6 +72,7 @@
             currently_playing = next_song;
             list.removeChild(next_song);
             player.loadVideoById(next_song.id);
+            document.title=next_song.core_snippet.title;
         }
 
         else
