@@ -167,11 +167,17 @@
   <body onload="loadPlaylist()">
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="left" style="margin-left:13%;margin-right:4%;width:33%;display:inline-block;vertical-align:top">
-        <center><div id="player"></div>
-        <br>
-        <button onclick="playNext()" style="width:100%">Next</button><br>
-        <button title="Courtesy of Sayantan Khan (Bolt64)" id="repeat_all" onclick="toggle(this)" style="width:48%">Repeat All</button>
-        <button title="Courtesy of Sayantan Khan (Bolt64)" id="repeat_one" onclick="toggle(this)" style="width:48%">Repeat One</button>
+        <center>
+            <div id="player"></div>
+            <br>
+            <button onclick="playNext()" style="width:100%">Next</button><br>
+            <button title="Courtesy of Sayantan Khan (Bolt64)" id="repeat_all" onclick="toggle(this)" 
+                    style="width:49%;margin-right:2px">
+                Repeat All
+            </button>
+            <button title="Courtesy of Sayantan Khan (Bolt64)" id="repeat_one" onclick="toggle(this)" style="width:49%">
+                Repeat One
+            </button>
         </center>
         <h3>Next in line :</h3>
         <table id="list" style="width:100%"></table>
