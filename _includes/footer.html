@@ -1,0 +1,24 @@
+<footer class="site-footer">
+
+  <div class="wrapper">
+    <ul class="contact-list">
+      <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+      <li><a href="tel://{{ site.phone }}">{{ site.phone }}</a></li>
+    </ul>
+
+    <ul class="social-media-list">
+      {% if site.github_username %}
+      <li>
+        {% include icon-github.html username=site.github_username %}
+      </li>
+      {% endif %}
+
+      {% if site.fb_id %}
+      <li>
+        {% include icon-facebook.html username=site.name fbid=site.fb_id %}
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+
+</footer>

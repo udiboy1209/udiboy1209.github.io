@@ -1,0 +1,18 @@
+<header class="site-header">
+
+  <div class="ribbon">
+    <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+  </div>
+
+  <div class="wrapper">
+    <nav class="site-nav">
+      {% for tab in site.pages %}
+        {% if tab.title%}
+          <div id="{{ tab.id }}" class="nav-tab {{ page.title == tab.title ? "invisible" : "" }}">
+            <a class="nav-tab-title">{{ tab.title }}</a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </nav>
+  </div>
+</header>
