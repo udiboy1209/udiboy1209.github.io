@@ -9,7 +9,7 @@
       {% for tab in site.pages %}
         {% if tab.title%}
           <div id="{{ tab.id }}" class="nav-tab {{ page.title == tab.title ? "invisible" : "" }}">
-            <a class="nav-tab-title">{{ tab.title }}</a>
+            <a href="{{ site.baseurl }}{{ tab.id }}" class="nav-tab-title">{{ tab.title }}</a>
           </div>
         {% endif %}
       {% endfor %}

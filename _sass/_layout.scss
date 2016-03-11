@@ -106,10 +106,12 @@
 
 .contact-list {
     float: left;
+    margin-left: $spacing-unit * 2;
 }
 
 .social-media-list {
     float: right;
+    margin-right: $spacing-unit * 2;
 }
 
 /**
@@ -124,6 +126,11 @@
         background-color: $content-color;
         @include rounded-bottom(20px);
         @include box-shadow(2px, 5px, 5px);
+    }
+
+    .content-wrapper {
+        padding-left: $spacing-unit;
+        padding-right: $spacing-unit;
     }
 }
 
@@ -204,3 +211,22 @@ header {
     height: 55px;
 }
 
+/**
+ * Tabs
+ */
+
+.tab-wrapper {
+    padding-bottom: $spacing-unit;
+}
+
+#facebook-dp {
+    $dim : 75px;
+    width: $dim * 2;
+    height: $dim * 2; 
+    margin-bottom: $spacing-unit * 0.5;
+
+    @include rounded($dim);
+    @include center();
+
+    position: relative;
+}
