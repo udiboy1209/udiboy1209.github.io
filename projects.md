@@ -12,7 +12,7 @@ I have been contributing to open source projects on github for a while. I have a
 I also have a list of my own open source projects which I am maintaining:
 
  - [**Fast Playlist**](https://github.com/udiboy1209/fast_playlist)<br>
-   A webapp to create and play youtube playlists in a lightning fast way. It is aimed toward making listening to songs on youtube as easy as pi. It is hosted [here](https://udiboy1209/github.io/fast_playlist)
+   A webapp to create and play youtube playlists in a lightning fast way. It is aimed toward making listening to songs on youtube as easy as pi. It is hosted [here](https://udiboy1209.github.io/fast_playlist)
  - [**Image Progress Bar**](https://github.com/udiboy1209/ImageProgressBar)<br>
    Android library for using custom images as progress bars. Had initially designed it for use in the IIT Bombay TechFest 2015 Android App, after which I moved it to my own repository.
  - [**EasyFill**](https://github.com/Sumith1896/EasyFill)<br>

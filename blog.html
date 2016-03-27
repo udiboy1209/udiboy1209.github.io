@@ -3,27 +3,15 @@ layout: tab
 title: Blog
 id: blog
 ---
-{% for post in paginator.posts %}
+{% for post in site.posts %}
     {% if post.category == "blog" %}
-        <article class="span{{ 12 | divided_by: site.columns }}">
-            <header>
-                {% include libs/thumbnail %}
-                <hgroup>
-                    <h2>
-                        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-                    </h2>
-                    <h5>
-                        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: site.date_format }}</time>
-                    </h5>
-                </hgroup>
-            </header>
-            <div class="content">
-                {% include libs/truncate_exec %}
-            </div>
-            <footer>
-                <p><a href="{{ site.baseurl }}{{ post.url }}" class="btn">Read this &raquo;</a></p>
-            </footer>
-        </article><!--/span-->
+        <h2>
+            <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+        </h2>
+        <h5>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: site.date_format }}</time>
+        </h5>
+        <p><a href="{{ site.baseurl }}{{ post.url }}" class="btn">Read this &raquo;</a></p>
     {% endif %}
 {% endfor %}
 

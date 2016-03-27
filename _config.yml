@@ -8,8 +8,32 @@ url: "http://udiboy1209.github.io" # the base hostname & protocol for your site
 github_username: udiboy1209
 fb_id: 1611542573
 
+permalink: /:path/
+
+defaults: 
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: page
+  - scope:
+      path: ""
+      type: stuff
+    values:
+      layout: page
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
+  stuff:
+    output: true
+    permalink: /stuff/:path/
+
 # Build settings
 markdown: kramdown
 highlighter: rouge
 
 jquery: 2.1.4
+
+
