@@ -1,15 +1,17 @@
 ---
 layout: tab
-title: About Me
+title: Blog
 id: index
 ---
-<img id="facebook-dp"
-src="https://graph.facebook.com/1611542573/picture?height=208&width=208&type=normal">
-<p>
-Hello! This is Meet Udeshi, a second year undergraduate student of Electrical Engineering Dept. at IIT Bombay.
-Coding, tinkering with electronics/robotics, watching movies/TV shows and painting are some of my favourite hobbies. 
-I also like stargazing and reading books :D .
-<br>
-I've done a lot of interesting coding stuff (cool Android apps, games and much more :P ) - Check out the <a href="/?menu=projects">Projects</a> section.  
-I am currently a convener for <a href="https://facebook.com/electronicsiitb">The Electronics Club - IIT Bombay</a>
-</p>
+{% for post in site.posts %}
+    {% if post.category == "blog" %}
+        <h2>
+            <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+        </h2>
+        <h5>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: site.date_format }}</time>
+        </h5>
+        <p><a href="{{ site.baseurl }}{{ post.url }}" class="btn">Read this &raquo;</a></p>
+    {% endif %}
+{% endfor %}
+
