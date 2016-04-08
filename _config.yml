@@ -7,6 +7,7 @@ baseurl: "/" # the subpath of your site, e.g. /blog
 url: "http://udiboy1209.github.io" # the base hostname & protocol for your site
 github_username: udiboy1209
 fb_id: 1611542573
+date_format: "%b %-d, %Y"
 
 permalink: /:path/
 
@@ -21,6 +22,11 @@ defaults:
       type: stuff
     values:
       layout: page
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
 
 collections:
   projects:
