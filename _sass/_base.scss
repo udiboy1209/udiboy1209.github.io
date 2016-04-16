@@ -205,3 +205,10 @@ pre {
         }
     }
 }
+
+hr {
+    border-color: $grey-color-light;
+    border-style: solid;
+    margin-top: $spacing-unit / 2;
+    margin-bottom: $spacing-unit;
+}
