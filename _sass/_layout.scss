@@ -230,3 +230,18 @@ header {
 
     position: relative;
 }
+
+.article {
+    margin-bottom: $spacing-unit / 2;
+    margin-top:    $spacing-unit / 2;
+
+    .time-wrapper {
+        display: inline;
+        font-style: italic;
+    }
+
+    .title {
+        display: inline;
+        margin-right: $spacing-unit * 2 / 5;
+    }
+}
