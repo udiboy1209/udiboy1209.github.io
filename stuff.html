@@ -4,10 +4,21 @@ title: Interesting Stuff
 id: stuff
 ---
 
-<p>Something "original" yet to come here</p>
-<p>Till then enjoy the latest <b>xkcd</b> comic :P</p>
-<a href="http://xkcd.com"><h3 id="title">Turnabout<h3>
-<img id="xkcd-strip" src="http://imgs.xkcd.com/comics/turnabout.png"></img></a>
+{% for stuff in site.stuff %}
+    <div class="article">
+        <h2 class="title">
+            {{ stuff.title }}
+        </h2>
+        <p>
+            {{ stuff.content }}
+        </p>
+    </div>
+    <hr>
+{% endfor %}
+
+This <b>xkcd</b> comic is gonna stay here forever :D!
+<a href="http://xkcd.com"><h3 id="title"><h3>
+<img id="xkcd-strip"></img></a>
 
 <script type="text/javascript">
 
