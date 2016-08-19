@@ -113,7 +113,7 @@ and use the correct renderer names.
 
 The result is pretty amazing :D
 
-![Finally!](/img/map_tmx.png)
+![Finally!]({{ site.baseurl }}/assets/blog/map_tmx.png)
 
 ## Futile optimizations
 

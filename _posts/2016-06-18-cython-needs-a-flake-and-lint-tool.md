@@ -40,7 +40,7 @@ was never rendered because the texture change was never rebatched.
 A few code fixes and updates to the twinkling stars example so that animations
 use different image files led to this:
 
-![beautiful night sky](/img/red_blue_stars.gif)
+![beautiful night sky]({{ site.baseurl }}/assets/blog/red_blue_stars.gif)
 
 Isn't this even more beutiful than the previous example :D. Because I had to
 remove a lot of code for this fix, there were a lot of unused variables lying
@@ -56,7 +56,7 @@ just a vim plugin for that matter. I might do it myself if I get enough motivati
 Anyway, that fix led to one more thing, animated tiles started working! Here,
 have a look:
 
-![Yay!](/img/animated_tiles.gif)
+![Yay!]({{ site.baseurl }}/assets/blog/animated_tiles.gif)
 
 Next in line
 -----------
@@ -74,6 +74,6 @@ in KivEnt examples because I don't think the tileset is open source :P. So I'll
 have to find an open source tileset and make another Tiled map for testing.
 Have a look at the Poekemon map:
 
-![pokemon_map](/img/pokemon_map.png)
+![pokemon_map]({{ site.baseurl }}/assets/blog/pokemon_map.png)
 
 

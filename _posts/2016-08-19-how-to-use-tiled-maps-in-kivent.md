@@ -56,7 +56,7 @@ render the map's layers.
 
 This is the basic boilerplate KV necessary for rendering the map.
 
-## Setting uo the Systems
+## Setting up the Systems
 
 I will start with the basic game app structure of `main.py`.
 
@@ -204,6 +204,6 @@ the `TileMap`.
 
 This is all we require to load a Tiled map in KivEnt.
 
-Download the source files from [here]({{site.baseurl}}tile_tutorial.zip)!
+Download the source files from [here]({{ site.baseurl }}/assets/blog/tile_tutorial.zip)!
 
 Thank you and happy tiling!

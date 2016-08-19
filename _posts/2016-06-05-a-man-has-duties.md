@@ -81,7 +81,7 @@ else it would make me a little behind schedule.
 
 I don't have a demo to show currently but I can show you a screen shot of my code.
 
-![tty1](/img/tty1.jpg)
+![tty1]({{ site.baseurl }}/assets/blog/tty1.jpg)
 
 Okay, okay don't laugh at me! I usually code on tty1 in linux (its very distraction free)
 and I didn't know how to take a screen shot of that :P.

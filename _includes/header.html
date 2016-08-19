@@ -1,14 +1,14 @@
 <header class="site-header">
 
   <div class="ribbon">
-    <a class="site-title" href="{{ site.baseurl }}">{{ site.title }}</a>
+    <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
   </div>
 
   <div class="wrapper">
     <nav class="site-nav">
       {% for tab in site.pages %}
         {% if tab.title%}
-        <a href="{{ site.baseurl }}{{ tab.id }}" class="nav-tab-title">
+        <a href="{{ site.baseurl }}/{{ tab.id }}" class="nav-tab-title">
           <div id="{{ tab.id }}" class="nav-tab {{ page.title == tab.title ? "invisible" : "" }}">
             {{ tab.title }}
           </div>

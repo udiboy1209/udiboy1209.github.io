@@ -45,8 +45,8 @@
     display: inline-block;
     text-align: center;
 
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: $spacing-unit / 4;
+    margin-right: $spacing-unit / 4;
 
     padding: $spacing-unit * 0.3;
 
@@ -153,7 +153,8 @@
 
 .post-meta {
     font-size: $small-font-size;
-    color: $grey-color;
+    color: $grey-color-dark;
+    margin-bottom: $spacing-unit / 2;
 }
 
 .post-link {
@@ -167,7 +168,7 @@
  * Posts
  */
 .post-header {
-    margin-bottom: $spacing-unit;
+    margin-bottom: $spacing-unit / 2;
 }
 
 .post-title {

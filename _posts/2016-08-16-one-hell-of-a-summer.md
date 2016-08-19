@@ -29,7 +29,7 @@ and we can make the 2D array separately. Why don't we store the array in a file
 in some standardised format so we could create that file externally. Layering
 would just require multiple 2D arrays!
 
-![pokemon map created in Tiled]({{site.baseurl}}img/pokemon_map.png)
+![pokemon map created in Tiled]({{ site.baseurl }}/assets/blog/pokemon_map.png)
 
 These are such fundamental requirements of games that there are a lot of tools
 out there just for creating that external file I mentioned above. A very famous
@@ -71,7 +71,7 @@ I then rendered this kinda trippy color tiles map. There was no automatic
 entity creation features so I had to set the tile in each place randomly but
 its a good test case.
 
-![First working prototype]({{site.baseurl}}img/animated_tiles.gif)
+![First working prototype]({{ site.baseurl }}/assets/blog/animated_tiles.gif)
 
 
 ## Loading TMX files
@@ -141,11 +141,11 @@ from `(i,j)`. Silimar lgic applies for isometric arrangement.
 
 Here are some examples:
 
-![hexagonal]({{ site.baseurl }}img/hexagonal.png)
+![hexagonal]({{ site.baseurl }}/assets/blog/hexagonal.png)
 
-![isometric]({{ site.baseurl }}img/isometric.png)
+![isometric]({{ site.baseurl }}/assets/blog/isometric.png)
 
-![staggered]({{ site.baseurl }}img/staggered.png)
+![staggered]({{ site.baseurl }}/assets/blog/staggered.png)
 
 [PR #153](https://github.com/kivy/kivent/pull/153) is where I added this
 feature. Figuring out the formula for the position from `(i,j)` was really
@@ -169,7 +169,7 @@ image with a rectangular model and texture.
 
 This is how the objects look on screen:
 
-![objects]({{ site.baseurl }}img/kivent_objects.png)
+![objects]({{ site.baseurl }}/assets/blog/kivent_objects.png)
 
 I added this feature in [PR #154](https://github.com/kivy/kivent/pull/154).
 
