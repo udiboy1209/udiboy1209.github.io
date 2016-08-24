@@ -184,3 +184,6 @@ required in the maps module.
 This has been really the most exciting project I have ever done!
 I thank Google Summer of Code, Kivy, and Jacob Kovak, my mentor, for
 giving me this great oppurtunity and helping me complete it!
+
+*Check out the tutorial to use the maps module with KivEnt
+[here]({{ site.baseurl }}/2016-08-19-how-to-use-tiled-maps-in-kivent)*

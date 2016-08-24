@@ -6,6 +6,38 @@ This is a tutorial for using the maps module in kivent to load Tiled maps. It
 covers the steps required to load and display a map on the kivent canvas, but
 it doesn't cover how to make a map in Tiled.
 
+## Building and installing the module
+
+Make sure you have kivy and its dependencies properly set up and working using
+these [installation instructions](https://kivy.org/docs/gettingstarted/installation.html).
+
+Clone the kivent repository to obtain the source. The module is currently in a
+separate branch 'tiled\_gsoc\_2016' so you can clone that branch only.
+
+```
+git clone -b tiled_gsoc_2016 https://github.com/kivy/kivent.git
+```
+
+You can skip the `-b tiled_gsoc_2016` if you want the whole repository.
+
+Install `kivent_core` first. Assuming you cloned it in a dir named 'kivent'
+
+```
+$ cd kivent/modules/core
+$ python setup.py build_ext install
+```
+
+Then install the maps module similarly
+
+```
+$ cd kivent/modules/maps
+$ python setup.py build_ext install
+```
+
+It is best to set up kivy and kivent in a virtual environment. Just make sure
+you use the correct python for the above commands. The module works
+best with python3, but it works with python2 too.
+
 ## Setting up the KV file
 
 We need a basic setup of the gameworld and a gameview where we will add the
@@ -207,3 +239,7 @@ This is all we require to load a Tiled map in KivEnt.
 Download the source files from [here]({{ site.baseurl }}/assets/blog/tile_tutorial.zip)!
 
 Thank you and happy tiling!
+
+<hr>
+
+*EDIT (2016-08-24): Added installation instructions.*
