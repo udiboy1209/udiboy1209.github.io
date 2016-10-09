@@ -136,7 +136,7 @@ each of the 50 is the duration of each frame, which is randomly assigned. I thou
 
 The results are pretty great:
 
-![twinkling_stars](/img/twinkling_stars.gif)
+![twinkling_stars](/assets/blog/twinkling_stars.gif)
 
 This was a pretty satisfying result for me :D! I still have to add and test a few features before I can do
 a performance test, but this has 3000 stars with 1 of 50 different animations, and it runs pretty
